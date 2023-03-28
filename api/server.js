@@ -1,12 +1,11 @@
 import express from 'express';
 import db from './src/db.js';
 import routes from './routes.js';
-import Filme from './src/models/filmeModel.js';
-import User from './src/models/userModel.js';
-import FilmeVisto from './src/models/filmeVistoModel.js';
-import FilmeParaVer from './src/models/filmeParaVerModel.js';
+import cors from 'cors';
 
 const app = express();
+
+app.use(cors());
 
 db.sync()
   .then(() => {
@@ -18,5 +17,6 @@ db.sync()
 
 app.use(express.json());
 app.use('/', routes);
+
 
 app.listen(3000, () => console.log('Servidor iniciado na porta 3000'));
