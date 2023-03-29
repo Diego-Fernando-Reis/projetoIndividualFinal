@@ -15,14 +15,17 @@ function Cards(){
         .catch((erro) => console.log(erro));
     })
 
-    console.log(filme)
+    const deleteCard = (id, e) =>{
+        axios.delete(`http://localhost:3000/filme/${id}`)
+        .then(res => console.log('Postado', res)).catch(err => console.log(err))
+    }
 
     return(
         <div className="cards">
             <div className="interno">
                 {filme?.map((e) => {
                     return(
-                        <Card titulo={e.nome}/>
+                        <Card titulo={e.nome} onclick={() => deleteCard(e.id)}/>
                     )
                 })}
             </div>
